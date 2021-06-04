@@ -1,6 +1,7 @@
 {
   "name": "zillow-refactor",
   "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@testing-library/jest-dom": "^5.13.0",
