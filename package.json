@@ -24,7 +24,13 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "commit": "npx cz"
+    "prettier": "prettier --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json}\"",
+    "type:check": "tsc -p tsconfig.json",
+    "lint": "eslint --ext .ts --ext .tsx .",
+    "format:fix": "npm run prettier -- --write",
+    "format:check": "npm run prettier -- --check",
+    "validate": "npm-run-all --parallel type:check format:check lint",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -34,10 +40,11 @@
     "overrides": [
       {
         "files": [
-          "**/*.stories.*"
+          "*"
         ],
         "rules": {
-          "import/no-anonymous-default-export": "off"
+          "import/no-anonymous-default-export": "off",
+          "no-empty-pattern": "off"
         }
       }
     ]
@@ -66,12 +73,20 @@
     "autoprefixer": "^9.8.6",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^7.0.35",
+    "prettier": "^2.2.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.4"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,json,css,md}": [
+      "npm run format:fix"
+    ]
   }
 }

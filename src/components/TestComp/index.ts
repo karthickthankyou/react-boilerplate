@@ -1,3 +1,2 @@
-import TestComp from './TestComp';
-  export default TestComp;
-  
+import TestComp from './TestComp'
+export default TestComp
